@@ -20,20 +20,6 @@ if getgenv().activate == nil then
 		camera.CFrame = state.CFrame
 	end
 
-	local function followTeleport(targetPlayer)
-		local localPlayer = Players.LocalPlayer
-		if not localPlayer then return end
-
-		local character = targetPlayer.Character
-		if not character then return end
-
-		local head = character:FindFirstChild("Head")
-		if not head then return end
-		
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(head.Position + Vector3.new(0, 1, -1 * (getgenv().distance)), head.Position)
-		followCamera(targetPlayer)
-	end
-
 	local function followCamera(targetPlayer)
 		local localPlayer = Players.LocalPlayer
 		if not localPlayer then return end
@@ -69,6 +55,21 @@ if getgenv().activate == nil then
 		while updateCamera() do
 			RunService.RenderStepped:Wait()
 		end
+	end
+
+	
+	local function followTeleport(targetPlayer)
+		local localPlayer = Players.LocalPlayer
+		if not localPlayer then return end
+
+		local character = targetPlayer.Character
+		if not character then return end
+
+		local head = character:FindFirstChild("Head")
+		if not head then return end
+		
+		localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(head.Position + Vector3.new(0, 1, -1 * (getgenv().distance)), head.Position)
+		followCamera(targetPlayer)
 	end
 
 	local function resetCamera(savedCameraState)
