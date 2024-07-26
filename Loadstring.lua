@@ -3,7 +3,7 @@ getgenv().message = "/e death."
 
 getgenv().chatToActivate = false -- if false, it will only activate when key is pressed
 
-getgenv().teleportPlayerInsteadOfCamera = true -- if true, it will teleport player instead of camera
+getgenv().teleportPlayer = true -- if true, it will teleport player instead of camera
 getgenv().cooldown = .4
 getgenv().automatic = true
 getgenv().distance = 2
