@@ -31,13 +31,7 @@ if getgenv().activate == nil then
 		if not head then return end
 		
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(head.Position + Vector3.new(0, 1, -1 * (getgenv().distance)), head.Position)
-		if not getgenv().automatic then
-			mouse1click()
-		end
-		local endTime = tick() + getgenv().cooldown
-		while tick() < endTime do
-			RunService.RenderStepped:Wait()
-		end
+		followCamera(targetPlayer)
 	end
 
 	local function followCamera(targetPlayer)
@@ -99,11 +93,10 @@ if getgenv().activate == nil then
 	end
 
 	local function cycleThroughPlayers()
-		if not getgenv().teleportPlayerInsteadOfCamera then
-			local savedCameraState = saveCameraState()
-		else
+		if getgenv().teleportPlayerInsteadOfCamera then
 			local pos = Players.LocalPlayer.Character.HumanoidRootPart.Position
 		end
+		local savedCameraState = saveCameraState()
 		if getgenv().automatic then
 			mouse1press()
 		end
@@ -120,9 +113,8 @@ if getgenv().activate == nil then
 			mouse1release()
 		end
 		task.wait(1)
-		if not getgenv().teleportPlayerInsteadOfCamera then
-			resetCamera(savedCameraState)
-		else
+		resetCamera(savedCameraState)
+		if getgenv().teleportPlayerInsteadOfCamera then
 			Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(pos)
 		end
 	end
