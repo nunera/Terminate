@@ -93,7 +93,7 @@ if getgenv().activate == nil then
 	end
 
 	local function cycleThroughPlayers()
-		if getgenv().teleportPlayerInsteadOfCamera then
+		if getgenv().teleportPlayer then
 			local pos = Players.LocalPlayer.Character.HumanoidRootPart.Position
 		end
 		local savedCameraState = saveCameraState()
@@ -102,7 +102,7 @@ if getgenv().activate == nil then
 		end
 		for _, player in Players:GetPlayers() do
 			if player ~= Players.LocalPlayer and player.Team ~= Players.LocalPlayer.Team and not table.find(getgenv().whitelist, player.Name) then
-				if getgenv().teleportPlayerInsteadOfCamera then
+				if getgenv().teleportPlayer then
 					followTeleport(player)
 				else
 					followCamera(player)
@@ -114,7 +114,7 @@ if getgenv().activate == nil then
 		end
 		task.wait(1)
 		resetCamera(savedCameraState)
-		if getgenv().teleportPlayerInsteadOfCamera then
+		if getgenv().teleportPlayer then
 			Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(pos)
 		end
 	end
