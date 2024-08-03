@@ -1,4 +1,4 @@
-if getgenv().activate == nil then
+if getgenv().activated == nil then
 	local Players = game:GetService("Players")
 	local RunService = game:GetService("RunService")
 	local UserInputService = game:GetService("UserInputService")
